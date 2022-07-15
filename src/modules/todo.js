@@ -1,34 +1,30 @@
 const Todo = (title, description, dueDate, priority) => {
-    let todoTitle = title;
-    let todoDescription = description;
-    let todoDueDate = dueDate;
-    let todoPriority = priority;
     let isDone = false;
-
+     
     return {
         get title() {
-            return todoTitle;
+            return title;
         },
         set title(newTitle) {
-            todoTitle = newTitle;
+            title = newTitle;
         },
         get description() {
-            return todoDescription;
+            return description;
         },
         set description(newDescription) {
-            todoDescription = newDescription;
+            description = newDescription;
         },
         get dueDate() {
-            return todoDueDate;
+            return dueDate;
         },
         set dueDate(newDueDate) {
-            todoDueDate = newDueDate;
+            dueDate = newDueDate;
         },
         get priority() {
-            return todoPriority;
+            return priority;
         },
         set priority(newPriority) {
-            todoPriority = newPriority;
+            priority = newPriority;
         },
         get isDone() {
             return isDone;
