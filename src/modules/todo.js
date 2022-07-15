@@ -10,7 +10,7 @@ const Todo = (title, description, dueDate, priority) => {
             return todoTitle;
         },
         set title(newTitle) {
-            todoTitle = newTitle
+            todoTitle = newTitle;
         },
         get description() {
             return todoDescription;
@@ -21,13 +21,13 @@ const Todo = (title, description, dueDate, priority) => {
         get dueDate() {
             return todoDueDate;
         },
-        set title(newDueDate) {
+        set dueDate(newDueDate) {
             todoDueDate = newDueDate;
         },
         get priority() {
             return todoPriority;
         },
-        set title(newPriority) {
+        set priority(newPriority) {
             todoPriority = newPriority;
         },
         get isDone() {
