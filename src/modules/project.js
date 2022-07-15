@@ -23,4 +23,6 @@ const Project = (title, [...todoList]) => {
     };
 }
 
-export default Project;
+let projectList = [];
+
+export {Project, projectList};
