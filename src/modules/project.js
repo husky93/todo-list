@@ -4,8 +4,8 @@ const Project = (title, [...todoList]) => {
         todoList.push(todo);
     }
 
-    const removeTodo = (todo) => {
-        todoList = todoList.filter(!todo);
+    const removeTodo = (index) => {
+        todoList.splice(index, 1);
     }
 
     return {
