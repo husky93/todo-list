@@ -1,6 +1,6 @@
 const Todo = (title, description, dueDate, priority) => {
     let isDone = false;
-     
+
     return {
         get title() {
             return title;
@@ -24,7 +24,10 @@ const Todo = (title, description, dueDate, priority) => {
             return priority;
         },
         set priority(newPriority) {
-            priority = newPriority;
+            if (newPriority === 1 || newPriority === 2 || newPriority === 3) 
+                priority = newPriority;
+            else
+                throw 'Todo.priority setting new value failed / Must be integer 1, 2 or 3';
         },
         get isDone() {
             return isDone;
@@ -33,7 +36,7 @@ const Todo = (title, description, dueDate, priority) => {
             if (typeof(value) === 'boolean') 
                 isDone = value;
             else
-                throw 'Todo.isDone / Wrong value type provided, must be boolean';
+                throw 'Todo.isDone setting new value failed / Wrong value type provided, must be boolean';
         }
     };
 }
