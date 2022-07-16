@@ -10,5 +10,5 @@ projectList.push(defaultProject);
 
 console.log(defaultProject.todoList[0].id);
 
-ui.renderTemplate();
+ui.createTemplate();
 
