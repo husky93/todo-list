@@ -3,6 +3,11 @@ import {projectList} from './project';
 const ui = (() => {
     const _main = document.querySelector('main');
 
+    const renderTemplate = () => {
+        _renderHeader();
+        _renderFooter();
+    };
+
     const _renderHeader = () => {
         const body = document.querySelector('body');
         const header = document.createElement('header')
@@ -14,11 +19,6 @@ const ui = (() => {
         const footer = document.createElement('footer');  
         _main.after(footer);
     }
-
-    const renderTemplate = () => {
-        _renderHeader();
-        _renderFooter();
-    };
 
     return {
         renderTemplate

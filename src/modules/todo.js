@@ -1,5 +1,13 @@
 const Todo = (title, description, dueDate, priority) => {
     let isDone = false;
+    let id = _getNewId();
+
+    const _getNewId = () => {
+        uid = String(Date.now().toString(32) + Math.random().toString(16))
+            .replace(/\./g, '');
+
+        return uid;
+    }
 
     return {
         get title() {
@@ -37,6 +45,9 @@ const Todo = (title, description, dueDate, priority) => {
                 isDone = value;
             else
                 throw 'Todo.isDone setting new value failed / Wrong value type provided, must be boolean';
+        },
+        get id() {
+            return id;
         }
     };
 }
