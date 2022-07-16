@@ -4,14 +4,6 @@ const ui = (() => {
     const _main = document.querySelector('main');
     const _mainWrapper = document.querySelector('.wrapper--main');
 
-    const createTemplate = () => {
-        _createHeader();
-        _createFooter();
-        _createMenu();
-        ui.createWrapper(['content'], _mainWrapper, 'div');
-        _renderInitial();
-    };
-
     const _createHeader = () => {
         const body = document.querySelector('body');
         const header = document.createElement('header')
@@ -52,11 +44,30 @@ const ui = (() => {
         ui.createWrapper(['project-list'], nav, 'div');
     }
 
+    const _createTodoUi = (id, wrapper) => {
+        const todoUi = ui.createWrapper(['todo-ui'], wrapper, 'div');
+        const details = ui.createLink(['todo-button', 'todo-details'], todoUi, '');
+        const del = ui.createLink(['todo-button', 'todo-detete'], todoUi, '');
+        const priority = ui.createLink(['todo-button', 'todo-priority'], todoUi, '');
+        const edit = ui.createLink(['todo-button', 'todo-edit'], todoUi, '');
+
+        ui.createIcon(['material-symbols-outlined'], details, 'visibility');
+        ui.createIcon(['material-symbols-outlined'], del, 'delete');
+        ui.createIcon(['material-symbols-outlined'], priority, 'flag');
+        ui.createIcon(['material-symbols-outlined'], edit, 'edit');
+
+        details.dataset.id = id;
+        del.dataset.id = id;
+        priority.dataset.id = id;
+        edit.dataset.id = id;
+    }
+
     const _createTodo = (Todo, parent) => {
         const todoWrapper = ui.createWrapper(['container', 'todo'], parent, 'div');
         _createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone);
+        _createTodoUi(Todo.id, todoWrapper);
+
         todoWrapper.dataset.id = Todo.id;
-        
     }
 
     const _renderInitial = () => {
@@ -89,6 +100,14 @@ const ui = (() => {
         })
     }
 
+    const createTemplate = () => {
+        _createHeader();
+        _createFooter();
+        _createMenu();
+        ui.createWrapper(['content'], _mainWrapper, 'div');
+        _renderInitial();
+    }
+
     const createHeading = ([...classList], parent, headingTag, text) => {
         const heading = document.createElement(`${headingTag}`);
         classList.forEach(item => heading.classList.add(item));
@@ -103,10 +122,17 @@ const ui = (() => {
         parent.appendChild(para);
     }
 
+    const createIcon = ([...classList], parent, name) => {
+        const icon = document.createElement('span');
+        classList.forEach(item => icon.classList.add(item));
+        icon.textContent = name;
+        parent.appendChild(icon);
+    }
+
     const createLink = ([...classList], parent, text) => {
         const link = document.createElement('a');
         classList.forEach(item => link.classList.add(item));
-        link.textContent = text;
+        link.innerHTML = text;
         parent.appendChild(link);
         return link;
     }
@@ -119,6 +145,7 @@ const ui = (() => {
     }
 
     return {
+        createIcon,
         createLink,
         createTemplate,
         createHeading,
