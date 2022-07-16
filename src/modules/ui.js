@@ -1,5 +1,4 @@
 import {projectList} from './project';
-import controller from './controller';
 
 const ui = (() => {
     const _main = document.querySelector('main');
@@ -34,11 +33,6 @@ const ui = (() => {
         const closeButton = createLink(['close', 'modal-close'], modal, '')
         createIcon(['material-symbols-outlined'], closeButton, 'close');
         wrapper.style.display = 'none';
-
-        closeButton.addEventListener('click', e => controller.closeModal(wrapper));
-        overlay.addEventListener('click', e => controller.closeModal(wrapper));
-        modal.onclick = e => e.stopPropagation();
-
         footer.after(wrapper);
     }
 
@@ -112,6 +106,10 @@ const ui = (() => {
         todoList.forEach(item => {
             _createTodo(item, content);
         })
+    }
+
+    const renderAddModal = () => {
+
     }
 
     const createTemplate = () => {

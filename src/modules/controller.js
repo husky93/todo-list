@@ -1,7 +1,12 @@
 const controller = (() => {
 
-    const closeModal = (modal) => {
+    const closeModal = () => {
+        const modal = document.querySelector('.modal');
         modal.style.display = 'none';
+    }
+
+    const showModal = (modal) => {
+
     }
 
     return {
