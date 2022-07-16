@@ -11,9 +11,20 @@ const events = (() => {
         modal.onclick = e => e.stopPropagation();
     }
 
+    const addTodoUiEventListeners = () => {
+        const details = document.querySelectorAll('.todo-details');
+        const del = document.querySelectorAll('.todo-delete');
+        const edit = document.querySelectorAll('.todo-edit');
+
+        details.forEach(elem => elem.addEventListener('click', e => controller.showDetails(e)));
+        del.forEach(elem => elem.addEventListener('click', e => controller.deleteTodo(e)));
+        edit.forEach(elem => elem.addEventListener('click', e => controller.editTodo(e)));
+    }
+
 
     return {
-        addInitialEventListeners
+        addInitialEventListeners,
+        addTodoUiEventListeners
     }
 })();
 

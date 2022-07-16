@@ -9,8 +9,24 @@ const controller = (() => {
 
     }
 
+    const showDetails = (e) => {
+
+    }
+
+    const deleteTodo = (e) => {
+
+    }
+
+    const editTodo = (e) => {
+
+    }
+
     return {
-        closeModal
+        showModal,
+        closeModal,
+        showDetails,
+        deleteTodo,
+        editTodo
     }
 })();
 

@@ -12,4 +12,5 @@ projectList.push(defaultProject);
 
 ui.createTemplate();
 events.addInitialEventListeners();
+events.addTodoUiEventListeners();
 
