@@ -1,13 +1,6 @@
 const Todo = (title, description, dueDate, priority) => {
     let isDone = false;
-    let id = _getNewId();
-
-    const _getNewId = () => {
-        uid = String(Date.now().toString(32) + Math.random().toString(16))
-            .replace(/\./g, '');
-
-        return uid;
-    }
+    const id = getNewId();
 
     return {
         get title() {
@@ -50,6 +43,12 @@ const Todo = (title, description, dueDate, priority) => {
             return id;
         }
     };
+}
+
+const getNewId = () => {
+    const uid = String(Date.now().toString(32) + Math.random().toString(16))
+        .replace(/\./g, '');
+    return uid;
 }
 
 export default Todo;

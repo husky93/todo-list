@@ -8,5 +8,7 @@ const newTodo = Todo('ASD', 'Default description', '11-11-2022', 2);
 defaultProject.addTodo(newTodo);
 projectList.push(defaultProject);
 
+console.log(defaultProject.todoList[0].id);
+
 ui.renderTemplate();
 
