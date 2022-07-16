@@ -1,4 +1,5 @@
 import {projectList} from './project';
+import controller from './controller';
 
 const ui = (() => {
     const _main = document.querySelector('main');
@@ -25,6 +26,22 @@ const ui = (() => {
         _createProjectList(nav);        
     }
 
+    const _createModal = () => {
+        const footer = document.querySelector('footer');
+        const wrapper = createWrapper(['wrapper', 'modal'], null, 'div');
+        const overlay = createWrapper(['modal-overlay'], wrapper, 'div');
+        const modal = createWrapper(['modal-body'], overlay, 'div');
+        const closeButton = createLink(['close', 'modal-close'], modal, '')
+        createIcon(['material-symbols-outlined'], closeButton, 'close');
+        wrapper.style.display = 'none';
+
+        closeButton.addEventListener('click', e => controller.closeModal(wrapper));
+        overlay.addEventListener('click', e => controller.closeModal(wrapper));
+        modal.onclick = e => e.stopPropagation();
+
+        footer.after(wrapper);
+    }
+
     const _createCheckmark = ([...classList], parent, text, checked) => {
         const formCheck = createWrapper(['form-check'], parent, 'div');
         const input = document.createElement('input');
@@ -48,17 +65,14 @@ const ui = (() => {
         const todoUi = ui.createWrapper(['todo-ui'], wrapper, 'div');
         const details = ui.createLink(['todo-button', 'todo-details'], todoUi, '');
         const del = ui.createLink(['todo-button', 'todo-detete'], todoUi, '');
-        const priority = ui.createLink(['todo-button', 'todo-priority'], todoUi, '');
         const edit = ui.createLink(['todo-button', 'todo-edit'], todoUi, '');
 
         ui.createIcon(['material-symbols-outlined'], details, 'visibility');
         ui.createIcon(['material-symbols-outlined'], del, 'delete');
-        ui.createIcon(['material-symbols-outlined'], priority, 'flag');
         ui.createIcon(['material-symbols-outlined'], edit, 'edit');
 
         details.dataset.id = id;
         del.dataset.id = id;
-        priority.dataset.id = id;
         edit.dataset.id = id;
     }
 
@@ -72,7 +86,7 @@ const ui = (() => {
 
     const _renderInitial = () => {
         ui.renderProjectList();
-        ui.renderTodos(projectList[0]);
+        ui.renderTodos(projectList[0].todoList);
     }
 
     const renderProjectList = () => {
@@ -88,14 +102,14 @@ const ui = (() => {
         })
     }
 
-    const renderTodos = (project) => {
+    const renderTodos = (todoList) => {
         const content = document.querySelector('.content');
 
         while(content.lastElementChild) {
             content.removeChild(content.lastElementChild);
         }
 
-        project.todoList.forEach(item => {
+        todoList.forEach(item => {
             _createTodo(item, content);
         })
     }
@@ -106,6 +120,7 @@ const ui = (() => {
         _createMenu();
         ui.createWrapper(['content'], _mainWrapper, 'div');
         _renderInitial();
+        _createModal();
     }
 
     const createHeading = ([...classList], parent, headingTag, text) => {
@@ -140,7 +155,7 @@ const ui = (() => {
     const createWrapper = ([...classList], parent, wrapperTag) => {
         const wrapper = document.createElement(`${wrapperTag}`);
         classList.forEach(item => wrapper.classList.add(item));
-        parent.appendChild(wrapper);
+        if(parent) parent.appendChild(wrapper);
         return wrapper;
     }
 

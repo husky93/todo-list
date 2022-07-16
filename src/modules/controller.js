@@ -1,7 +1,11 @@
 const controller = (() => {
 
-    return {
+    const closeModal = (modal) => {
+        modal.style.display = 'none';
+    }
 
+    return {
+        closeModal
     }
 })();
 
