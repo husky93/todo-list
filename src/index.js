@@ -5,6 +5,7 @@ import {Project, projectList} from './modules/project';
 
 const defaultProject = Project('Default', [Todo('Default', 'Default description', '11-11-2022', 1)]);
 const newTodo = Todo('ASD', 'Default description', '11-11-2022', 2);
+newTodo.isDone = true;
 defaultProject.addTodo(newTodo);
 projectList.push(defaultProject);
 

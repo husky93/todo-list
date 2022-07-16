@@ -6,7 +6,23 @@ body {
     justify-content: space-between;
 }
 
-header, main, footer {
+.wrapper {
     max-width: 1296px;
     margin: 0 auto;
+}
+
+.main {
+    flex: 1;
+}
+
+.wrapper--main {
+    display: flex;
+}
+
+.menu {
+ flex: 1 30%;
+}
+
+.content {
+    flex: 1 70%;
 }
