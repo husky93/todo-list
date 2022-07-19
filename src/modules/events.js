@@ -20,6 +20,7 @@ const events = (() => {
         _addModalEventListeners();
         _addBtnAddEventListeners();
         events.addTodoUiEventListeners();
+        events.addSwitchProjectListeners();
     }
 
     const addTodoUiEventListeners = () => {
@@ -32,6 +33,11 @@ const events = (() => {
         edit.forEach(elem => elem.addEventListener('click', e => controller.editTodo(e)));
     }
 
+    const addSwitchProjectListeners = () => {
+        const projects = document.querySelectorAll('.project-link');
+        projects.forEach(project => project.addEventListener('click', controller.switchProject));
+    }
+
     const addFormEditListener = (todo) => {
         const form = document.querySelector('.form--edit');
         form.addEventListener('submit', e => controller.submitEdit(e, todo));
@@ -39,13 +45,14 @@ const events = (() => {
 
     const addFormAddListener = (todo) => {
         const form = document.querySelector('.form--add');
-        form.addEventListener('submit', controller.submitAdd);
+        form.addEventListener('submit', controller.submitAddTodo);
     }
 
 
     return {
         addInitialEventListeners,
         addTodoUiEventListeners,
+        addSwitchProjectListeners,
         addFormEditListener,
         addFormAddListener
     }

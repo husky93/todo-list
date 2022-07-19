@@ -62,3 +62,10 @@ body {
     right: 0;
     top: 0;
 }
+
+/* Menu */
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+}

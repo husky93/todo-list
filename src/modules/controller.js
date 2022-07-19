@@ -41,10 +41,18 @@ const controller = (() => {
         controller.showModal();
     }
 
-    const addTodo = (e) => {
+    const addTodo = () => {
         ui.renderAdd();
         events.addFormAddListener();
         controller.showModal();
+    }
+
+    const switchProject = (e) => {
+        projects.currentProject = e.target.dataset.id;
+        const currentProject = projects.currentProject;
+        const todoList = projects.projectList[currentProject].todoList
+        ui.renderTodos(todoList);
+        events.addTodoUiEventListeners();
     }
 
     const submitEdit = (e, todo) => {
@@ -65,7 +73,7 @@ const controller = (() => {
         controller.closeModal();
     }
 
-    const submitAdd = (e) => {
+    const submitAddTodo = (e) => {
         e.preventDefault();
         const currentProject = projects.currentProject;
         const title = e.target.elements.title.value;
@@ -89,7 +97,8 @@ const controller = (() => {
         editTodo,
         addTodo,
         submitEdit,
-        submitAdd
+        submitAddTodo,
+        switchProject
     }
 })();
 
