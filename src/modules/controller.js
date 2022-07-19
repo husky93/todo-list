@@ -22,7 +22,6 @@ const controller = (() => {
     }
 
     const deleteTodo = (e) => {
-        // let todo = ui.currentTodoList.filter(item => item.id === e.target.parentElement.dataset.id);
         const currentProject = projects.currentProject;
         projects.projectList[currentProject].todoList.forEach((item, index) => {
             if(item.id === e.target.parentElement.dataset.id) {
@@ -34,7 +33,30 @@ const controller = (() => {
     }
 
     const editTodo = (e) => {
-        console.log(e.target.parentElement.dataset.id);
+        let todo = ui.currentTodoList.filter(item => item.id === e.target.parentElement.dataset.id);
+        todo = todo[0];
+        ui.renderEdit(todo);
+        events.addFormEditListener(todo);
+        controller.showModal();
+    }
+
+    const submitEdit = (e, todo) => {
+        e.preventDefault();
+        const currentProject = projects.currentProject;
+        const title = e.target.elements.title.value;
+        const description = e.target.elements.description.value;
+        const dueDate = e.target.elements.dueDate.value;
+        const priority = document.querySelector('input[name="priority"]:checked').id === 'low' ? 3 : 
+                        document.querySelector('input[name="priority"]:checked').id === 'medium' ? 2 : 1;
+        projects.projectList[currentProject].todoList.forEach((item, index) => {
+            if(item.id === todo.id) {
+                projects.projectList[currentProject].editTodo(index, title, description, dueDate, priority);
+                ui.renderTodos(projects.projectList[currentProject].todoList);
+                events.addTodoUiEventListeners();
+            }
+        });
+
+        controller.closeModal();
     }
 
     return {
@@ -42,7 +64,8 @@ const controller = (() => {
         closeModal,
         showDetails,
         deleteTodo,
-        editTodo
+        editTodo,
+        submitEdit
     }
 })();
 

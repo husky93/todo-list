@@ -26,10 +26,16 @@ const events = (() => {
         edit.forEach(elem => elem.addEventListener('click', e => controller.editTodo(e)));
     }
 
+    const addFormEditListener = (todo) => {
+        const form = document.querySelector('.form--edit');
+        form.addEventListener('submit', e => controller.submitEdit(e, todo));
+    }
+
 
     return {
         addInitialEventListeners,
-        addTodoUiEventListeners
+        addTodoUiEventListeners,
+        addFormEditListener
     }
 })();
 
