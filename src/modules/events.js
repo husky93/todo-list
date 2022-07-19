@@ -11,8 +11,14 @@ const events = (() => {
         modal.onclick = e => e.stopPropagation();
     }
 
+    const _addBtnAddEventListeners = () => {
+        const btn = document.querySelector('.add');
+        btn.addEventListener('click', controller.addTodo)
+    }
+
     const addInitialEventListeners = () => {
         _addModalEventListeners();
+        _addBtnAddEventListeners();
         events.addTodoUiEventListeners();
     }
 
@@ -31,11 +37,17 @@ const events = (() => {
         form.addEventListener('submit', e => controller.submitEdit(e, todo));
     }
 
+    const addFormAddListener = (todo) => {
+        const form = document.querySelector('.form--add');
+        form.addEventListener('submit', controller.submitAdd);
+    }
+
 
     return {
         addInitialEventListeners,
         addTodoUiEventListeners,
-        addFormEditListener
+        addFormEditListener,
+        addFormAddListener
     }
 })();
 

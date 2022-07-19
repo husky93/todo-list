@@ -72,6 +72,12 @@ const ui = (() => {
         parent.appendChild(button);
     }
 
+    const _createAddButton = () => {
+        const menu = document.querySelector('.menu');
+        const btn = _createLink(['add', 'btn--add'], menu, '');
+        _createIcon(['add', 'material-symbols-outlined'], btn, 'add');
+    }
+
     const _createModal = () => {
         const footer = document.querySelector('footer');
         const wrapper = _createWrapper(['wrapper', 'modal'], null, 'div');
@@ -221,7 +227,7 @@ const ui = (() => {
     const renderDetails = (Todo) => {
         const modal = document.querySelector('.modal-body');
         const priority = `Priority: ${Todo.priority === 1 ? 'High' : Todo.priority === 2 ? 'Medium' : 'Low'}`;
-        
+
         _clearModal(modal);
         _createHeading(['modal-title'], modal, 'h3', Todo.title);
         const content = _createWrapper(['modal-content', 'details'], modal, 'div');
@@ -261,6 +267,25 @@ const ui = (() => {
         _createButton(['btn', 'btn--primary', 'edit-submit'], form, 'Submit changes', 'submit');
     }
 
+    const renderAdd = () => {
+        const modal = document.querySelector('.modal-body');
+        _clearModal(modal);
+        const form = _createWrapper(['form--add'], modal, 'form');
+        form.method = 'post';
+        _createInput(['input', 'input--edit'], form, 'text', 'title', 'Title:', true);
+        _createTextarea(['textarea', 'input--edit'], form, 'description', 'Description:', false);
+        _createInput(['input', 'input--edit'], form, 'datetime-local', 'dueDate', 'Due date:', true);
+        const fieldset = document.createElement('fieldset');
+        const legend = document.createElement('legend');
+        legend.textContent = 'Select priority';
+        fieldset.appendChild(legend);
+        _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'low', 'Low', true);
+        _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'medium', 'Medium', true);
+        _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
+        form.appendChild(fieldset);
+        _createButton(['btn', 'btn--primary', 'add-submit'], form, 'Submit changes', 'submit');
+    }
+
     const createTemplate = () => {
         _createHeader();
         _createFooter();
@@ -268,6 +293,7 @@ const ui = (() => {
         _createWrapper(['content'], _mainWrapper, 'div');
         _renderInitial();
         _createModal();
+        _createAddButton();
     }
 
     return {
@@ -278,7 +304,8 @@ const ui = (() => {
         renderProjectList,
         renderTodos,
         renderDetails,
-        renderEdit
+        renderEdit,
+        renderAdd
     }
 })();
 

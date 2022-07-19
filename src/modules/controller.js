@@ -1,6 +1,7 @@
 import {projects} from "./project";
 import ui from "./ui";
 import events from "./events";
+import Todo from "./todo";
 
 const controller = (() => {
 
@@ -40,6 +41,12 @@ const controller = (() => {
         controller.showModal();
     }
 
+    const addTodo = (e) => {
+        ui.renderAdd();
+        events.addFormAddListener();
+        controller.showModal();
+    }
+
     const submitEdit = (e, todo) => {
         e.preventDefault();
         const currentProject = projects.currentProject;
@@ -58,13 +65,31 @@ const controller = (() => {
         controller.closeModal();
     }
 
+    const submitAdd = (e) => {
+        e.preventDefault();
+        const currentProject = projects.currentProject;
+        const title = e.target.elements.title.value;
+        const description = e.target.elements.description.value;
+        const dueDate = e.target.elements.dueDate.value;
+        const priority = document.querySelector('input[name="priority"]:checked').id === 'low' ? 3 : 
+                        document.querySelector('input[name="priority"]:checked').id === 'medium' ? 2 : 1;
+        const todo = Todo(title, description, dueDate, priority);
+
+        projects.projectList[currentProject].todoList.push(todo);
+        ui.renderTodos(projects.projectList[currentProject].todoList);
+        events.addTodoUiEventListeners();
+        controller.closeModal();
+    }
+
     return {
         showModal,
         closeModal,
         showDetails,
         deleteTodo,
         editTodo,
-        submitEdit
+        addTodo,
+        submitEdit,
+        submitAdd
     }
 })();
 
