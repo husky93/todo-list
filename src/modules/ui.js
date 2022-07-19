@@ -3,6 +3,7 @@ import {projectList} from './project';
 const ui = (() => {
     const _main = document.querySelector('main');
     const _mainWrapper = document.querySelector('.wrapper--main');
+    let currentTodoList = null;
 
     const _createHeader = () => {
         const body = document.querySelector('body');
@@ -107,6 +108,8 @@ const ui = (() => {
 
     const renderTodos = (todoList) => {
         const content = document.querySelector('.content');
+        currentTodoList = todoList;
+        console.log(currentTodoList);
 
         while(content.lastElementChild) {
             content.removeChild(content.lastElementChild);
@@ -117,9 +120,17 @@ const ui = (() => {
         })
     }
 
-    const renderDetails = () => {
+    const renderDetails = (Todo) => {
         const modal = document.querySelector('.modal-body');
         _clearModal(modal);
+        ui.createHeading(['modal-title'], modal, 'h3', Todo.title);
+        const content = ui.createWrapper(['modal-content', 'details'], modal, 'div');
+        ui.createParagraph(['modal-date'], content, Todo.dueDate);
+        ui.createParagraph(['modal-description'], content, Todo.description);
+        ui.createParagraph(['modal-prio'], content, Todo.priority);
+        if(Todo.isDone) {
+            ui.createParagraph(['modal-isdone'], content, 'Task is completed');
+        }
     }
 
     const createTemplate = () => {
@@ -168,6 +179,9 @@ const ui = (() => {
     }
 
     return {
+        get currentTodoList() {
+            return currentTodoList;
+        },
         createIcon,
         createLink,
         createTemplate,

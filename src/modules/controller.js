@@ -13,7 +13,9 @@ const controller = (() => {
     }
 
     const showDetails = (e) => {
-        ui.renderDetails();
+        let todo = ui.currentTodoList.filter(item => item.id === e.target.parentElement.dataset.id);
+        todo = todo[0];
+        ui.renderDetails(todo);
         controller.showModal();
     }
 
