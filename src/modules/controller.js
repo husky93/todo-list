@@ -55,7 +55,6 @@ const controller = (() => {
                 events.addTodoUiEventListeners();
             }
         });
-
         controller.closeModal();
     }
 

@@ -220,18 +220,22 @@ const ui = (() => {
 
     const renderDetails = (Todo) => {
         const modal = document.querySelector('.modal-body');
+        const priority = `Priority: ${Todo.priority === 1 ? 'High' : Todo.priority === 2 ? 'Medium' : 'Low'}`;
+        
         _clearModal(modal);
         _createHeading(['modal-title'], modal, 'h3', Todo.title);
         const content = _createWrapper(['modal-content', 'details'], modal, 'div');
         _createParagraph(['modal-date'], content, Todo.dueDate);
         _createParagraph(['modal-description'], content, Todo.description);
-        _createParagraph(['modal-prio'], content, Todo.priority);
+        _createParagraph(['modal-prio'], content, priority);
         if(Todo.isDone) {
             _createParagraph(['modal-isdone'], content, 'Task is completed');
         }
     }
 
     const renderEdit = (Todo) => {
+
+        //Create form for editing inside initially generated modal
         const modal = document.querySelector('.modal-body');
         _clearModal(modal);
         const form = _createWrapper(['form--edit'], modal, 'form');
@@ -245,10 +249,10 @@ const ui = (() => {
         fieldset.appendChild(legend);
         const radioLow =_createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'low', 'Low', true);
         const radioMedium = _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'medium', 'Medium', true);
-        const radioHight = _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
+        const radioHigh = _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
 
         //Input current values when clicked on edit.
-        Todo.priority === 1 ? radioHight.checked = true : Todo.priority === 2 ? radioMedium.checked = true : radioLow.checked = true;
+        Todo.priority === 1 ? radioHigh.checked = true : Todo.priority === 2 ? radioMedium.checked = true : radioLow.checked = true;
         title.value = Todo.title;
         description.value = Todo.description;
         dueDate.value = Todo.dueDate;
