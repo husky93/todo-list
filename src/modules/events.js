@@ -11,16 +11,14 @@ const events = (() => {
         modal.onclick = e => e.stopPropagation();
     }
 
-    const _addBtnAddEventListeners = () => {
-        const btn = document.querySelector('.add');
-        btn.addEventListener('click', controller.addTodo)
-    }
+
 
     const addInitialEventListeners = () => {
         _addModalEventListeners();
-        _addBtnAddEventListeners();
+        events.addBtnAddEventListeners();
         events.addTodoUiEventListeners();
         events.addSwitchProjectListeners();
+        events.addBtnProjectEventListeners();
     }
 
     const addTodoUiEventListeners = () => {
@@ -43,9 +41,25 @@ const events = (() => {
         form.addEventListener('submit', e => controller.submitEdit(e, todo));
     }
 
-    const addFormAddListener = (todo) => {
+    const addFormAddListener = () => {
         const form = document.querySelector('.form--add');
         form.addEventListener('submit', controller.submitAddTodo);
+    }
+
+    const addFormProjectListener = () => {
+        const form = document.querySelector('.form--project');
+        console.log(form);
+        form.addEventListener('submit', controller.submitAddProject);
+    }
+
+    const addBtnAddEventListeners = () => {
+        const btn = document.querySelector('.add');
+        btn.addEventListener('click', controller.addTodo)
+    }
+
+    const addBtnProjectEventListeners = () => {
+        const btn = document.querySelector('.project-add');
+        btn.addEventListener('click', controller.addProject)
     }
 
 
@@ -54,7 +68,10 @@ const events = (() => {
         addTodoUiEventListeners,
         addSwitchProjectListeners,
         addFormEditListener,
-        addFormAddListener
+        addFormAddListener,
+        addFormProjectListener,
+        addBtnAddEventListeners,
+        addBtnProjectEventListeners
     }
 })();
 

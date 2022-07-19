@@ -72,12 +72,6 @@ const ui = (() => {
         parent.appendChild(button);
     }
 
-    const _createAddButton = () => {
-        const menu = document.querySelector('.menu');
-        const btn = _createLink(['add', 'btn--add'], menu, '');
-        _createIcon(['add', 'material-symbols-outlined'], btn, 'add');
-    }
-
     const _createModal = () => {
         const footer = document.querySelector('footer');
         const wrapper = _createWrapper(['wrapper', 'modal'], null, 'div');
@@ -143,6 +137,18 @@ const ui = (() => {
             if(modal.lastElementChild !== modalClose)
                 modal.removeChild(modal.lastElementChild);
         }
+    }
+
+    const _createAddTodosButton = () => {
+        const content = document.querySelector('.content');
+        const btn = _createLink(['add', 'btn', 'btn--primary'], content, 'Add Todo');
+        _createIcon(['icon--add', 'material-symbols-outlined'], btn, 'add');
+    }
+
+    const _createAddProjectButton = () => {
+        const menu = document.querySelector('.menu');
+        const btn = _createLink(['project-add', 'btn', 'btn--primary'], menu, '');
+        _createIcon(['icon--add', 'material-symbols-outlined'], btn, 'add');
     }
 
     const _createInput = ([...classList], parent, type, name, labelText, required, value) => {
@@ -222,6 +228,7 @@ const ui = (() => {
         todoList.forEach(item => {
             _createTodo(item, content);
         })
+        _createAddTodosButton();
     }
 
     const renderDetails = (Todo) => {
@@ -267,7 +274,7 @@ const ui = (() => {
         _createButton(['btn', 'btn--primary', 'edit-submit'], form, 'Submit changes', 'submit');
     }
 
-    const renderAdd = () => {
+    const renderAddTodo = () => {
         const modal = document.querySelector('.modal-body');
         _clearModal(modal);
         const form = _createWrapper(['form--add'], modal, 'form');
@@ -283,7 +290,16 @@ const ui = (() => {
         _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'medium', 'Medium', true);
         _createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
         form.appendChild(fieldset);
-        _createButton(['btn', 'btn--primary', 'add-submit'], form, 'Submit changes', 'submit');
+        _createButton(['btn', 'btn--primary', 'add-submit'], form, 'Add new Todo', 'submit');
+    }
+
+    const renderAddProject = () => {
+        const modal = document.querySelector('.modal-body');
+        _clearModal(modal);
+        const form = _createWrapper(['form--project'], modal, 'form');
+        form.method = 'post';
+        _createInput(['input', 'input--edit'], form, 'text', 'title', 'Project Title:', true);
+        _createButton(['btn', 'btn--primary', 'project-submit'], form, 'Add new project', 'submit');
     }
 
     const createTemplate = () => {
@@ -293,7 +309,7 @@ const ui = (() => {
         _createWrapper(['content'], _mainWrapper, 'div');
         _renderInitial();
         _createModal();
-        _createAddButton();
+        _createAddProjectButton();
     }
 
     return {
@@ -305,7 +321,8 @@ const ui = (() => {
         renderTodos,
         renderDetails,
         renderEdit,
-        renderAdd
+        renderAddTodo,
+        renderAddProject
     }
 })();
 

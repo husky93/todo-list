@@ -1,4 +1,4 @@
-import {projects} from "./project";
+import {Project, projects} from "./project";
 import ui from "./ui";
 import events from "./events";
 import Todo from "./todo";
@@ -42,10 +42,17 @@ const controller = (() => {
     }
 
     const addTodo = () => {
-        ui.renderAdd();
+        ui.renderAddTodo();
         events.addFormAddListener();
         controller.showModal();
     }
+
+    const addProject = () => {
+        ui.renderAddProject();
+        events.addFormProjectListener();
+        controller.showModal();
+    }
+
 
     const switchProject = (e) => {
         projects.currentProject = e.target.dataset.id;
@@ -53,6 +60,7 @@ const controller = (() => {
         const todoList = projects.projectList[currentProject].todoList
         ui.renderTodos(todoList);
         events.addTodoUiEventListeners();
+        events.addBtnAddEventListeners();
     }
 
     const submitEdit = (e, todo) => {
@@ -68,6 +76,7 @@ const controller = (() => {
                 projects.projectList[currentProject].editTodo(index, title, description, dueDate, priority);
                 ui.renderTodos(projects.projectList[currentProject].todoList);
                 events.addTodoUiEventListeners();
+                events.addBtnAddEventListeners();
             }
         });
         controller.closeModal();
@@ -86,6 +95,23 @@ const controller = (() => {
         projects.projectList[currentProject].todoList.push(todo);
         ui.renderTodos(projects.projectList[currentProject].todoList);
         events.addTodoUiEventListeners();
+        events.addBtnAddEventListeners();
+        controller.closeModal();
+    }
+
+    const submitAddProject = (e) => {
+        e.preventDefault();
+        const title = e.target.elements.title.value;
+        const project = Project(title, []);
+        projects.projectList.push(project);
+        const currentProject = projects.projectList.length - 1;
+        projects.currentProject = currentProject;
+
+        ui.renderProjectList();
+        ui.renderTodos(projects.projectList[currentProject].todoList);
+        events.addTodoUiEventListeners();
+        events.addBtnAddEventListeners();
+        events.addSwitchProjectListeners();
         controller.closeModal();
     }
 
@@ -96,8 +122,10 @@ const controller = (() => {
         deleteTodo,
         editTodo,
         addTodo,
+        addProject,
         submitEdit,
         submitAddTodo,
+        submitAddProject,
         switchProject
     }
 })();
