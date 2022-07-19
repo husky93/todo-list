@@ -1,14 +1,19 @@
 import controller from "./controller";
 
 const events = (() => {
-    const addInitialEventListeners = () => {
+    const _addModalEventListeners = () => {
         const closeModal = document.querySelector('.modal-close');
         const modalOverlay = document.querySelector('.modal-overlay');
         const modal = document.querySelector('.modal-body');
 
-        closeModal.addEventListener('click', controller.closeModal());
-        modalOverlay.addEventListener('click', controller.closeModal());
+        closeModal.addEventListener('click', controller.closeModal);
+        modalOverlay.addEventListener('click', controller.closeModal);
         modal.onclick = e => e.stopPropagation();
+    }
+
+    const addInitialEventListeners = () => {
+        _addModalEventListeners();
+        events.addTodoUiEventListeners();
     }
 
     const addTodoUiEventListeners = () => {

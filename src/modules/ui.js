@@ -36,7 +36,7 @@ const ui = (() => {
         footer.after(wrapper);
     }
 
-    const _createCheckmark = ([...classList], parent, text, checked) => {
+    const _createCheckmark = ([...classList], parent, text, checked, id) => {
         const formCheck = createWrapper(['form-check'], parent, 'div');
         const input = document.createElement('input');
         const label = document.createElement('label');
@@ -44,9 +44,11 @@ const ui = (() => {
         classList.forEach(item => formCheck.classList.add(item));
 
         input.type = 'checkbox';
-        checked ? input.checked = true : input.checked = false
+        input.id = id;
 
+        checked ? input.checked = true : input.checked = false
         label.textContent = text;
+        label.htmlFor = id;
 
         formCheck.append(input, label);
     }
@@ -58,7 +60,7 @@ const ui = (() => {
     const _createTodoUi = (id, wrapper) => {
         const todoUi = ui.createWrapper(['todo-ui'], wrapper, 'div');
         const details = ui.createLink(['todo-button', 'todo-details'], todoUi, '');
-        const del = ui.createLink(['todo-button', 'todo-detete'], todoUi, '');
+        const del = ui.createLink(['todo-button', 'todo-delete'], todoUi, '');
         const edit = ui.createLink(['todo-button', 'todo-edit'], todoUi, '');
 
         ui.createIcon(['material-symbols-outlined'], details, 'visibility');
@@ -72,15 +74,22 @@ const ui = (() => {
 
     const _createTodo = (Todo, parent) => {
         const todoWrapper = ui.createWrapper(['container', 'todo'], parent, 'div');
-        _createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone);
+        _createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone, Todo.id);
         _createTodoUi(Todo.id, todoWrapper);
-
-        todoWrapper.dataset.id = Todo.id;
     }
 
     const _renderInitial = () => {
         ui.renderProjectList();
         ui.renderTodos(projectList[0].todoList);
+    }
+
+    const _clearModal = (modal) => {
+        const modalClose = document.querySelector('.modal-close');
+
+        while(modal.childElementCount > 1) {
+            if(modal.lastElementChild !== modalClose)
+                modal.removeChild(modal.lastElementChild);
+        }
     }
 
     const renderProjectList = () => {
@@ -108,8 +117,9 @@ const ui = (() => {
         })
     }
 
-    const renderAddModal = () => {
-
+    const renderDetails = () => {
+        const modal = document.querySelector('.modal-body');
+        _clearModal(modal);
     }
 
     const createTemplate = () => {
@@ -165,7 +175,8 @@ const ui = (() => {
         createParagraph,
         createWrapper,
         renderProjectList,
-        renderTodos
+        renderTodos,
+        renderDetails
     }
 })();
 
