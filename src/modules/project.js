@@ -23,6 +23,9 @@ const Project = (title, [...todoList]) => {
     };
 }
 
-let projectList = [];
+let projects = {
+        currentProject: 0,
+        projectList: []
+};
 
-export {Project, projectList};
+export {Project, projects};

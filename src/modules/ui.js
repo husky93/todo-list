@@ -1,4 +1,4 @@
-import {projectList} from './project';
+import {projects} from './project';
 
 const ui = (() => {
     const _main = document.querySelector('main');
@@ -81,7 +81,7 @@ const ui = (() => {
 
     const _renderInitial = () => {
         ui.renderProjectList();
-        ui.renderTodos(projectList[0].todoList);
+        ui.renderTodos(projects.projectList[0].todoList);
     }
 
     const _clearModal = (modal) => {
@@ -100,7 +100,7 @@ const ui = (() => {
             container.removeChild(container.lastElementChild);
         }
 
-        projectList.forEach((item, index) => {
+        projects.projectList.forEach((item, index) => {
             const project = ui.createLink(['project-link'], container, item.title);
             project.dataset.id = index;
         })
@@ -109,7 +109,6 @@ const ui = (() => {
     const renderTodos = (todoList) => {
         const content = document.querySelector('.content');
         currentTodoList = todoList;
-        console.log(currentTodoList);
 
         while(content.lastElementChild) {
             content.removeChild(content.lastElementChild);
