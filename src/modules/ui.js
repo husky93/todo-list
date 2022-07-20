@@ -115,6 +115,14 @@ const ui = (() => {
         _createIcon(['material-symbols-outlined'], del, 'delete');
         _createIcon(['material-symbols-outlined'], edit, 'edit');
 
+        const tooltipDetails = _createWrapper(['tooltip'], details, 'span');
+        const tooltipDelete = _createWrapper(['tooltip'], del, 'span');
+        const tooltipEdit = _createWrapper(['tooltip'], edit, 'span');
+
+        tooltipDetails.textContent = 'Show Details';
+        tooltipDelete.textContent = 'Delete Todo';
+        tooltipEdit.textContent = 'Edit Todo';
+
         details.dataset.id = id;
         del.dataset.id = id;
         edit.dataset.id = id;
@@ -128,7 +136,8 @@ const ui = (() => {
             hour: 'numeric',
             minute: 'numeric',
         });
-        const todoWrapper = _createWrapper(['container', 'todo'], parent, 'div');
+        const priority = Todo.priority === 1 ? 'high' : Todo.priority === 2 ? 'medium' : 'low';
+        const todoWrapper = _createWrapper(['container', 'todo', `priority-${priority}`], parent, 'div');
         _createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone, Todo.id);
         const container = _createWrapper(['todo-details'], todoWrapper, 'div');
         _createParagraph(['todo-date'], container, date);
