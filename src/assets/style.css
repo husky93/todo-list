@@ -75,3 +75,17 @@ body {
 .completed {
     text-decoration: line-through;
 }
+
+.todo-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.todo-ui {
+    display: flex;
+}
+
+.todo-date {
+    margin: 0;
+}

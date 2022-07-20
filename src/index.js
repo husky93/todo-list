@@ -47,6 +47,7 @@ else {
     defaultProjectTwo.addTodo(newTodoTwo);
     projects.projectList.push(defaultProject);
     projects.projectList.push(defaultProjectTwo);
+    projects.projectList.forEach(project => controller.sortByDate(project.todoList))
     if(storageAvailable('localStorage')) {
         localStorage.setObject('projects', projects);
     }

@@ -1,4 +1,6 @@
 import {projects} from './project';
+import intlFormat from 'date-fns/intlFormat';
+import parseISO from 'date-fns/parseISO';
 
 const ui = (() => {
     const _main = document.querySelector('main');
@@ -124,9 +126,18 @@ const ui = (() => {
     }
 
     const _createTodo = (Todo, parent) => {
+        const date = intlFormat(parseISO(Todo.dueDate), {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
         const todoWrapper = _createWrapper(['container', 'todo'], parent, 'div');
         _createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone, Todo.id);
-        _createTodoUi(Todo.id, todoWrapper);
+        const container = _createWrapper(['todo-details'], todoWrapper, 'div');
+        _createParagraph(['todo-date'], container, date);
+        _createTodoUi(Todo.id, container);
     }
 
     const _renderInitial = () => {
@@ -238,11 +249,18 @@ const ui = (() => {
     const renderDetails = (Todo) => {
         const modal = document.querySelector('.modal-body');
         const priority = `Priority: ${Todo.priority === 1 ? 'High' : Todo.priority === 2 ? 'Medium' : 'Low'}`;
+        const date = intlFormat(parseISO(Todo.dueDate), {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
 
         _clearModal(modal);
         _createHeading(['modal-title'], modal, 'h3', Todo.title);
         const content = _createWrapper(['modal-content', 'details'], modal, 'div');
-        _createParagraph(['modal-date'], content, Todo.dueDate);
+        _createParagraph(['modal-date'], content, date);
         _createParagraph(['modal-description'], content, Todo.description);
         _createParagraph(['modal-prio'], content, priority);
         if(Todo.isDone) {
