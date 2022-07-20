@@ -116,8 +116,10 @@ const controller = (() => {
         projects.projectList[currentProject].todoList.push(todo);
         sortByDate(projects.projectList[currentProject].todoList);
         ui.renderTodos(projects.projectList[currentProject].todoList);
+        ui.renderProjectList();
         events.addTodoUiEventListeners();
         events.addBtnAddEventListeners();
+        events.addSwitchProjectListeners();
         controller.closeModal();
         localStorage.setObject('projects', projects);
     }

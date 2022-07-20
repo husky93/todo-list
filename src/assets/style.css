@@ -27,11 +27,9 @@ body {
     flex: 1 70%;
 }
 
-.todo{
-    display: flex;
-    justify-content: space-between;
+p {
+    margin: 0;
 }
-
 /* Modal */
 
 .modal {
@@ -70,7 +68,18 @@ body {
     flex-direction: column;
 }
 
+.link {
+    display: flex;
+    gap: 12px;
+}
+
 /* Todo */
+
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+}
 
 .completed {
     text-decoration: line-through;

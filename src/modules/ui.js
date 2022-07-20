@@ -227,8 +227,10 @@ const ui = (() => {
         }
 
         projects.projectList.forEach((item, index) => {
-            const project = _createLink(['project-link'], container, item.title);
+            const wrapper = _createWrapper(['link'], container, 'div');
+            const project = _createLink(['project-link'], wrapper, item.title);
             project.dataset.id = index;
+            _createParagraph(['link-number'], wrapper, item.todoList.length);
         })
     }
 
