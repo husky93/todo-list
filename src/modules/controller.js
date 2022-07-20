@@ -91,6 +91,7 @@ const controller = (() => {
         const title = e.target.elements.title.value;
         const description = e.target.elements.description.value;
         const dueDate = e.target.elements.dueDate.value;
+        console.log(dueDate);
         const priority = document.querySelector('input[name="priority"]:checked').id === 'low' ? 3 : 
                         document.querySelector('input[name="priority"]:checked').id === 'medium' ? 2 : 1;
         projects.projectList[currentProject].todoList.forEach((item, index) => {

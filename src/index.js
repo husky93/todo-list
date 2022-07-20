@@ -15,7 +15,6 @@ Storage.prototype.getObject = function(key) {
     return value && JSON.parse(value);
 }
 
-
 if(localStorage.getObject('projects')) {
     //Imports data from local storage JSON format which doesnt store methods
     const localStorageObject = localStorage.getObject('projects')
@@ -38,14 +37,14 @@ if(localStorage.getObject('projects')) {
 }
 
 else {
-    const defaultProject = Project('Example Project One', [Todo('Add footer', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 15), 1), 
-                            Todo('Create UI module', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 16), 2),
-                            Todo('Team meeting', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 17), 3),
-                            Todo('Drink some coffee', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 18), 1)]);
-    const defaultProjectTwo = Project('Learn JavaScript', [Todo('Learn React', 'Default description', new Date('2022', 7, 11), 1),
-                            Todo('Learn about factory functions', 'Default description', new Date('2022', 7, 11), 3)]);
-    const newTodo = Todo('Browse social media', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 22), 3);
-    const todoTwo =Todo('Make Todo List Project', 'Default description', new Date('2022', 7, 11), 2);
+    const defaultProject = Project('Example Project One', [Todo('Add footer', 'Lorem ipsum dolor sit amet...', '2022-08-12T19:30', 1), 
+                            Todo('Create UI module', 'Lorem ipsum dolor sit amet...', '2022-08-12T19:45', 2),
+                            Todo('Team meeting', 'Lorem ipsum dolor sit amet...', '2022-08-13T12:30', 3),
+                            Todo('Drink some coffee', 'Lorem ipsum dolor sit amet...', '2022-08-13T11:30', 1)]);
+    const defaultProjectTwo = Project('Learn JavaScript', [Todo('Learn React', 'Default description', '2022-09-14T20:30', 1),
+                            Todo('Learn about factory functions', 'Default description', '2023-04-23T14:30', 3)]);
+    const newTodo = Todo('Browse social media', 'Lorem ipsum dolor sit amet...', '2023-06-16T21:30', 3);
+    const todoTwo =Todo('Make Todo List Project', 'Default description', '2022-08-12T17:30', 2);
 
     newTodo.isDone = true;
     todoTwo.isDone = true;
