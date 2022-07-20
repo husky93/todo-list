@@ -4,6 +4,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 .wrapper {
@@ -30,6 +32,12 @@ body {
 /* Header */
 header {
     padding: 24px 48px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Work Sans', sans-serif;
 }
 
 /* Modal */
