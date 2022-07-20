@@ -10,14 +10,17 @@ const ui = (() => {
     const _createFooter = () => {
         const footer = document.createElement('footer'); 
         const wrapper = _createWrapper(['wrapper'], footer, 'div');
-        _createParagraph(['text--footer'], wrapper, 'Copyright © 2022 husky93'); 
+        _createParagraph(['text--footer'], wrapper, 'Copyright © 2022 '); 
+        const link = _createLink(['gh-link'], wrapper, 'husky93');
+        link.href = 'https://github.com/husky93';
         _main.after(footer);
     }
 
     const _createMenu = () => {
         const menu = _createWrapper(['menu'], _mainWrapper, 'aside');
         const nav = _createWrapper(['navbar'], menu, 'nav');
-        _createProjectList(nav);        
+        const projects = _createWrapper(['projects-tab'], nav, 'div');
+        _createProjectList(projects);        
     }
 
     const _createHeading = ([...classList], parent, headingTag, text) => {
@@ -154,7 +157,7 @@ const ui = (() => {
 
     const _createAddProjectButton = () => {
         const menu = document.querySelector('.menu');
-        const btn = _createLink(['project-add', 'btn', 'btn--primary'], menu, '');
+        const btn = _createLink(['project-add', 'btn', 'btn--primary'], menu, 'Add project');
         _createIcon(['icon--add', 'material-symbols-outlined'], btn, 'add');
     }
 
