@@ -112,7 +112,7 @@ const ui = (() => {
 
     const _createTodoUi = (id, wrapper) => {
         const todoUi = _createWrapper(['todo-ui'], wrapper, 'div');
-        const details = _createLink(['todo-button', 'todo-details'], todoUi, '');
+        const details = _createLink(['todo-button', 'btn-details'], todoUi, '');
         const del = _createLink(['todo-button', 'todo-delete'], todoUi, '');
         const edit = _createLink(['todo-button', 'todo-edit'], todoUi, '');
 
@@ -248,7 +248,6 @@ const ui = (() => {
 
     const renderDetails = (Todo) => {
         const modal = document.querySelector('.modal-body');
-        const priority = `Priority: ${Todo.priority === 1 ? 'High' : Todo.priority === 2 ? 'Medium' : 'Low'}`;
         const date = intlFormat(parseISO(Todo.dueDate), {
             year: 'numeric',
             month: 'numeric',
@@ -256,6 +255,7 @@ const ui = (() => {
             hour: 'numeric',
             minute: 'numeric',
         });
+        const priority = `Priority: ${Todo.priority === 1 ? 'High' : Todo.priority === 2 ? 'Medium' : 'Low'}`;
 
         _clearModal(modal);
         _createHeading(['modal-title'], modal, 'h3', Todo.title);

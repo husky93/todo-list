@@ -84,6 +84,7 @@ body {
 
 .todo-ui {
     display: flex;
+    gap: 12px;
 }
 
 .todo-date {

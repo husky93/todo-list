@@ -20,6 +20,7 @@ const controller = (() => {
     const showDetails = (e) => {
         let todo = ui.currentTodoList.filter(item => item.id === e.target.parentElement.dataset.id);
         todo = todo[0];
+        console.log(todo);
         ui.renderDetails(todo);
         controller.showModal();
     }
@@ -33,6 +34,7 @@ const controller = (() => {
                 events.addTodoUiEventListeners();
             }
         });
+        localStorage.setObject('projects', projects);
     }
 
     const editTodo = (e) => {
@@ -70,7 +72,6 @@ const controller = (() => {
     }
 
     const toggleCheckmark = (e) => {
-        console.log(e.target);
         const currentProject = projects.currentProject;
         projects.projectList[currentProject].todoList.forEach((item, index) => {
             if(item.id === e.target.id) {

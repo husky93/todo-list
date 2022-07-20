@@ -20,15 +20,15 @@ const events = (() => {
     }
 
     const addTodoUiEventListeners = () => {
-        const details = document.querySelectorAll('.todo-details');
+        const details = document.querySelectorAll('.btn-details');
         const del = document.querySelectorAll('.todo-delete');
         const edit = document.querySelectorAll('.todo-edit');
         const checkmark = document.querySelectorAll('input[type="checkbox"]');
 
-        details.forEach(elem => elem.addEventListener('click', e => controller.showDetails(e)));
-        del.forEach(elem => elem.addEventListener('click', e => controller.deleteTodo(e)));
-        edit.forEach(elem => elem.addEventListener('click', e => controller.editTodo(e)));
-        checkmark.forEach(elem => elem.addEventListener('change', e => controller.toggleCheckmark(e)));
+        details.forEach(elem => elem.addEventListener('click', controller.showDetails));
+        del.forEach(elem => elem.addEventListener('click', controller.deleteTodo));
+        edit.forEach(elem => elem.addEventListener('click', controller.editTodo));
+        checkmark.forEach(elem => elem.addEventListener('change', controller.toggleCheckmark));
     }
 
     const addSwitchProjectListeners = () => {
