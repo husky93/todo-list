@@ -15,15 +15,18 @@ Storage.prototype.getObject = function(key) {
 
 
 if(localStorage.getObject('projects')) {
+    //Imports data from local storage JSON format which doesnt store methods
     const localStorageObject = localStorage.getObject('projects')
     let newObject = {
         currentProject: localStorageObject.currentProject,
         projectList: []
     };
+    //Add the methods back to all the objects
     localStorageObject.projectList.forEach(item => {
         const title = item.title;
         let newTodoList = item.todoList.map(todo => {
             let newTodo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.id)
+            newTodo.isDone = todo.isDone;
             return newTodo;
         })
         newObject.projectList.push(Project(title, newTodoList));

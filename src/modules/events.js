@@ -23,10 +23,12 @@ const events = (() => {
         const details = document.querySelectorAll('.todo-details');
         const del = document.querySelectorAll('.todo-delete');
         const edit = document.querySelectorAll('.todo-edit');
+        const checkmark = document.querySelectorAll('input[type="checkbox"]');
 
         details.forEach(elem => elem.addEventListener('click', e => controller.showDetails(e)));
         del.forEach(elem => elem.addEventListener('click', e => controller.deleteTodo(e)));
         edit.forEach(elem => elem.addEventListener('click', e => controller.editTodo(e)));
+        checkmark.forEach(elem => elem.addEventListener('change', e => controller.toggleCheckmark(e)));
     }
 
     const addSwitchProjectListeners = () => {

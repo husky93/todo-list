@@ -92,8 +92,12 @@ const ui = (() => {
 
         input.type = 'checkbox';
         input.id = id;
-
-        checked ? input.checked = true : input.checked = false
+        if(checked) {
+            input.checked = true;
+            formCheck.classList.add('completed');
+        } else {
+            input.checked = false
+        }
         label.textContent = text;
         label.htmlFor = id;
 

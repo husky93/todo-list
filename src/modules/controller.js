@@ -63,6 +63,20 @@ const controller = (() => {
         events.addBtnAddEventListeners();
     }
 
+    const toggleCheckmark = (e) => {
+        console.log(e.target);
+        const currentProject = projects.currentProject;
+        projects.projectList[currentProject].todoList.forEach((item, index) => {
+            if(item.id === e.target.id) {
+                projects.projectList[currentProject].todoList[index].isDone = !item.isDone;
+                console.log(item.isDone);
+                console.log(projects.projectList[currentProject].todoList[index].isDone);
+                e.target.parentElement.classList.toggle('completed');
+            }
+        });
+        localStorage.setObject('projects', projects);
+    }
+
     const submitEdit = (e, todo) => {
         e.preventDefault();
         const currentProject = projects.currentProject;
@@ -129,7 +143,8 @@ const controller = (() => {
         submitEdit,
         submitAddTodo,
         submitAddProject,
-        switchProject
+        switchProject,
+        toggleCheckmark
     }
 })();
 
