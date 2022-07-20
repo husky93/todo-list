@@ -2,6 +2,8 @@ import {Project, projects} from "./project";
 import ui from "./ui";
 import events from "./events";
 import Todo from "./todo";
+import compareAsc from 'date-fns/compareAsc';
+import parseISO from 'date-fns/parseISO';
 
 const controller = (() => {
 
@@ -53,6 +55,10 @@ const controller = (() => {
         controller.showModal();
     }
 
+    const sortByDate = (array) => {
+        const sortedArray = array.sort((a, b) => compareAsc(parseISO(a.dueDate), parseISO(b.dueDate)));
+        return sortedArray;
+    }
 
     const switchProject = (e) => {
         projects.currentProject = e.target.dataset.id;
@@ -69,8 +75,6 @@ const controller = (() => {
         projects.projectList[currentProject].todoList.forEach((item, index) => {
             if(item.id === e.target.id) {
                 projects.projectList[currentProject].todoList[index].isDone = !item.isDone;
-                console.log(item.isDone);
-                console.log(projects.projectList[currentProject].todoList[index].isDone);
                 e.target.parentElement.classList.toggle('completed');
             }
         });
@@ -88,6 +92,7 @@ const controller = (() => {
         projects.projectList[currentProject].todoList.forEach((item, index) => {
             if(item.id === todo.id) {
                 projects.projectList[currentProject].editTodo(index, title, description, dueDate, priority);
+                sortByDate(projects.projectList[currentProject].todoList);
                 ui.renderTodos(projects.projectList[currentProject].todoList);
                 events.addTodoUiEventListeners();
                 events.addBtnAddEventListeners();
@@ -108,6 +113,7 @@ const controller = (() => {
         const todo = Todo(title, description, dueDate, priority);
 
         projects.projectList[currentProject].todoList.push(todo);
+        sortByDate(projects.projectList[currentProject].todoList);
         ui.renderTodos(projects.projectList[currentProject].todoList);
         events.addTodoUiEventListeners();
         events.addBtnAddEventListeners();
@@ -144,7 +150,8 @@ const controller = (() => {
         submitAddTodo,
         submitAddProject,
         switchProject,
-        toggleCheckmark
+        toggleCheckmark,
+        sortByDate
     }
 })();
 

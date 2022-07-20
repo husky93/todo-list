@@ -1,5 +1,6 @@
 import './assets/style.css';
 import ui from './modules/ui';
+import controller from './modules/controller';
 import Todo from './modules/todo';
 import {Project, projects} from './modules/project';
 import events from './modules/events';
@@ -33,6 +34,7 @@ if(localStorage.getObject('projects')) {
     });
     projects.currentProject = newObject.currentProject;
     projects.projectList = newObject.projectList;
+    projects.projectList.forEach(project => controller.sortByDate(project.todoList))
 }
 
 else {

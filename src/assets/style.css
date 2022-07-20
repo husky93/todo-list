@@ -69,3 +69,9 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* Todo */
+
+.completed {
+    text-decoration: line-through;
+}
