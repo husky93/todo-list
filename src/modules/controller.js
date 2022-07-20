@@ -31,7 +31,10 @@ const controller = (() => {
             if(item.id === e.target.parentElement.dataset.id) {
                 projects.projectList[currentProject].removeTodo(index);
                 ui.renderTodos(projects.projectList[currentProject].todoList);
+                ui.renderProjectList();
                 events.addTodoUiEventListeners();
+                events.addBtnAddEventListeners();
+                events.addSwitchProjectListeners();
             }
         });
         localStorage.setObject('projects', projects);
