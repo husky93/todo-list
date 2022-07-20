@@ -207,7 +207,7 @@ const ui = (() => {
     }
 
     const _createTextarea = ([...classList], parent, name, labelText, required) => {
-        const wrapper = _createWrapper(['input-group'], parent, 'div');
+        const wrapper = _createWrapper(['input-group', 'textarea-group'], parent, 'div');
         const input = document.createElement(`textarea`);
         const label = document.createElement('label');
         classList.forEach(item => input.classList.add(item));
@@ -266,7 +266,8 @@ const ui = (() => {
         _clearModal(modal);
         _createHeading(['modal-title'], modal, 'h3', Todo.title);
         const content = _createWrapper(['modal-content', 'details'], modal, 'div');
-        _createParagraph(['modal-date'], content, date);
+        _createParagraph(['modal-date'], content, `Due date: ${date}`);
+        _createParagraph(['modal-label'], content, 'Description:');
         _createParagraph(['modal-description'], content, Todo.description);
         _createParagraph(['modal-prio'], content, priority);
         if(Todo.isDone) {
