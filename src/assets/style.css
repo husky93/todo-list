@@ -1,5 +1,9 @@
 :root {
-    --bg-color: #fff;
+    --bg-color: #252525;
+    --bg-color-dark: #1D1D1D;
+    --bg-color-light: #363636;
+    --text-color: #E6E6E6;
+    --text-color-dark: #A7A7A7;
 }
 
 * {
@@ -14,6 +18,8 @@ body {
     justify-content: space-between;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    color: var(--text-color);
+    background-color: var(--bg-color-dark);
 }
 
 .wrapper {
@@ -27,15 +33,11 @@ aside, footer .wrapper, .content {
 
 .content {
     flex: 1 70%;
+    background-color: var(--bg-color);
 }
 
 /* Header */
 
-header .wrapper {
-    -webkit-box-shadow: 3px 8px 3px -5px rgba(66, 68, 90, 0.4);
-    -moz-box-shadow: 3px 8px 3px -5px rgba(66, 68, 90, 0.4);
-    box-shadow: 3px 8px 3px -5px rgba(66, 68, 90, 0.4);
-}
 
 h1 {
     font-size: 36px;
@@ -58,21 +60,20 @@ h1 {
 }
 
 .content {
-    -webkit-box-shadow: inset -6px 0px 3px -2px rgba(66, 68, 90, 0.4);
-    -moz-box-shadow: inset -6px 0px 3px -2px rgba(66, 68, 90, 0.4);
-    box-shadow: inset -6px 0px 3px -2px rgba(66, 68, 90, 0.4);
+
 }
 
 
 /* Menu */
 .menu {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    font-weight: 500;
+    font-size: 17px;
     z-index: 5;
     flex: 1 30%;
     height: 100%;
-    -webkit-box-shadow: 3px 3px 3px 0px rgba(66, 68, 90, 0.4);
-    -moz-box-shadow: 3px 3px 3px 0px rgba(66, 68, 90, 0.4);
-    box-shadow: 3px 3px 3px 0px rgba(66, 68, 90, 0.4);
+
 }
 .project-list {
     display: flex;
@@ -113,11 +114,14 @@ h1 {
 
 /* Footer */
 
-footer {
-    background-color: var(--bg-color);
+footer {   
+    z-index: 10;
+}
+
+footer .wrapper {
+    background-color: var(--bg-color-light);
     display: flex;
     justify-content: center;
-    z-index: 10;
 }
 
 
@@ -127,6 +131,7 @@ footer {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: 999;
 }
 
 .modal-overlay {

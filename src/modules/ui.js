@@ -7,14 +7,6 @@ const ui = (() => {
     const _mainWrapper = document.querySelector('.wrapper--main');
     let currentTodoList = null;
 
-    const _createHeader = () => {
-        const body = document.querySelector('body');
-        const header = document.createElement('header')
-        const wrapper = _createWrapper(['wrapper'], header, 'div');
-        _createHeading(['logo'], wrapper, 'h1', 'Todo List');
-        body.insertBefore(header, _main)
-    }
-
     const _createFooter = () => {
         const footer = document.createElement('footer'); 
         const wrapper = _createWrapper(['wrapper'], footer, 'div');
@@ -327,7 +319,6 @@ const ui = (() => {
     }
 
     const createTemplate = () => {
-        _createHeader();
         _createFooter();
         _createMenu();
         _createWrapper(['content'], _mainWrapper, 'div');
