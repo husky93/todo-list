@@ -11,8 +11,6 @@ const events = (() => {
         modal.onclick = e => e.stopPropagation();
     }
 
-
-
     const addInitialEventListeners = () => {
         _addModalEventListeners();
         events.addBtnAddEventListeners();

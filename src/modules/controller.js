@@ -80,6 +80,7 @@ const controller = (() => {
             }
         });
         controller.closeModal();
+        localStorage.setObject('projects', projects);
     }
 
     const submitAddTodo = (e) => {
@@ -97,6 +98,7 @@ const controller = (() => {
         events.addTodoUiEventListeners();
         events.addBtnAddEventListeners();
         controller.closeModal();
+        localStorage.setObject('projects', projects);
     }
 
     const submitAddProject = (e) => {
@@ -113,6 +115,7 @@ const controller = (() => {
         events.addBtnAddEventListeners();
         events.addSwitchProjectListeners();
         controller.closeModal();
+        localStorage.setObject('projects', projects);
     }
 
     return {

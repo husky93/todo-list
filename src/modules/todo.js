@@ -1,6 +1,6 @@
-const Todo = (title, description, dueDate, priority) => {
+const Todo = (title, description, dueDate, priority, oldId) => {
     let isDone = false;
-    const id = getNewId();
+    const id = oldId ? oldId : getNewId();
 
     return {
         get title() {
