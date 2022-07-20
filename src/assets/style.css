@@ -27,9 +27,11 @@ body {
     flex: 1 70%;
 }
 
-p {
-    margin: 0;
+/* Header */
+header {
+    padding: 24px 48px;
 }
+
 /* Modal */
 
 .modal {

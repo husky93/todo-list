@@ -1,3 +1,4 @@
+import './assets/reset.css';
 import './assets/style.css';
 import ui from './modules/ui';
 import controller from './modules/controller';
