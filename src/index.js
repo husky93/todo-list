@@ -33,19 +33,24 @@ if(localStorage.getObject('projects')) {
         })
         newObject.projectList.push(Project(title, newTodoList));
     });
-    projects.currentProject = newObject.currentProject;
     projects.projectList = newObject.projectList;
     projects.projectList.forEach(project => controller.sortByDate(project.todoList))
 }
 
 else {
-    const defaultProject = Project('Default', [Todo('Default', 'Default description', new Date('2022', 7, 15), 1)]);
-    const defaultProjectTwo = Project('Default2', [Todo('Default2', 'Default description', new Date('2022', 7, 11), 1)]);
-    const newTodo = Todo('ASD', 'Default description', new Date('2022', 7, 22), 2);
-    const newTodoTwo = Todo('ASDasdasda', 'Default description', new Date('2022', 11, 22), 2);
+    const defaultProject = Project('Example Project One', [Todo('Add footer', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 15), 1), 
+                            Todo('Create UI module', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 16), 2),
+                            Todo('Team meeting', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 17), 3),
+                            Todo('Drink some coffee', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 18), 1)]);
+    const defaultProjectTwo = Project('Learn JavaScript', [Todo('Learn React', 'Default description', new Date('2022', 7, 11), 1),
+                            Todo('Learn about factory functions', 'Default description', new Date('2022', 7, 11), 3)]);
+    const newTodo = Todo('Browse social media', 'Lorem ipsum dolor sit amet...', new Date('2022', 7, 22), 3);
+    const todoTwo =Todo('Make Todo List Project', 'Default description', new Date('2022', 7, 11), 2);
+
     newTodo.isDone = true;
+    todoTwo.isDone = true;
     defaultProject.addTodo(newTodo);
-    defaultProjectTwo.addTodo(newTodoTwo);
+    defaultProjectTwo.addTodo(todoTwo);
     projects.projectList.push(defaultProject);
     projects.projectList.push(defaultProjectTwo);
     projects.projectList.forEach(project => controller.sortByDate(project.todoList))

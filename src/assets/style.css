@@ -120,9 +120,8 @@ h1 {
 
 .link {
     display: flex;
-    padding: 12px;
+    align-items: center;
     border-radius: 6px;
-    gap: 12px;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -132,6 +131,7 @@ h1 {
 }
 
 .project-link {
+    padding: 12px;
     cursor: pointer;
 }
 
@@ -390,4 +390,8 @@ textarea {
 .add-submit, .edit-submit, .project-submit {
     background-color: var(--bg-color-dark);
     align-self: flex-end;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
