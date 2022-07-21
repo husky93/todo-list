@@ -81,6 +81,7 @@ h1 {
 .wrapper--main {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: stretch;
 }
 
@@ -94,6 +95,12 @@ h1 {
 .todo {
     width: 100%;
     border: 3px var(--bg-color-light) solid;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper--main {
+        flex-direction: row;
+    }
 }
 
 
@@ -230,6 +237,18 @@ h1 {
     gap: 8px;
 }
 
+.form-check label {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    word-break: break-all;
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
+    margin-right: 12px;
+}
+
 .priority-low {
     border-left: 3px var(--success-color) solid;
 }
@@ -290,6 +309,7 @@ footer .wrapper {
     -webkit-box-shadow: 7px 7px 13px -6px rgba(0, 0, 0, 0.71);
     -moz-box-shadow: 7px 7px 13px -6px rgba(0, 0, 0, 0.71);
     box-shadow: 7px 7px 13px -6px rgba(0, 0, 0, 0.71);
+    overflow: hidden;
 }
 
 .modal-close {
@@ -303,6 +323,14 @@ footer .wrapper {
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 38px;
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    word-break: break-all;
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
 }
 
 .modal-body .details {
@@ -321,6 +349,13 @@ footer .wrapper {
 
 .modal-description {
     margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 11;
+    -webkit-box-orient: vertical;  
+    word-break: break-all;
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
 }
 
 .form--add, .form--edit, .form--project {
