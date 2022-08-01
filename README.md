@@ -1,10 +1,8 @@
 # todo-list-app
-
-## About
 Web application for creating todo lists. Written in JavaScript with use of Factory functions and Module patterns to encapsulate exported modules.
 <br>
 
-### Features:
+## Features:
 - Store data in local storage
 - Dynamically render content
 - Create new projects
