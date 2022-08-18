@@ -15,6 +15,7 @@
 }
 
 body {
+    position: relative;
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -92,11 +93,6 @@ h1 {
     gap: 12px;
 }
 
-.todo {
-    width: 100%;
-    border: 3px var(--bg-color-light) solid;
-}
-
 @media screen and (min-width: 768px) {
     .wrapper--main {
         flex-direction: row;
@@ -162,9 +158,12 @@ h1 {
 
 .todo {
     display: flex;
-    justify-content: space-between;
-    padding: 12px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px;
     border-radius: 6px;
+    width: 100%;
+    border: 3px var(--bg-color-light) solid;
 }
 
 .completed {
@@ -173,13 +172,14 @@ h1 {
 
 .todo-details {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     gap: 24px;
 }
 
 .todo-ui {
     display: flex;
+    align-self: center;
     gap: 8px;
 }
 
@@ -261,6 +261,21 @@ h1 {
     border-left: 3px var(--primary-color) solid;
 }
 
+@media screen and (min-width: 768px) {
+  .todo {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 12px;
+  }
+  .todo-details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .todo-ui {
+    align-self: initial;
+  }
+}
+
 /* Footer */
 
 footer {   
@@ -290,7 +305,8 @@ footer .wrapper {
 
 .modal-overlay {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
@@ -377,8 +393,7 @@ footer .wrapper {
 
 .input-group:not(.radio-group) {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    flex-direction: column;
     width:100%;
     gap: 12px;
 }
@@ -395,16 +410,11 @@ footer .wrapper {
     font-weight: 500;
 }
 
-.input-group label {
-    flex: 0 120px;
-}
-
 .textarea-group:not(.radio-group) {
     align-items: flex-start;
 }
 
 .input--edit:not(.radio) {
-    flex: 1 100%;
     background-color: var(--bg-color-light);
     border-radius: 6px;
     border: none;
@@ -422,6 +432,7 @@ legend {
 
 textarea {
     min-height: 120px;
+    width: 100%;
 }
 
 .add-submit, .edit-submit, .project-submit {
