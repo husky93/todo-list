@@ -56,7 +56,7 @@ const ui = (() => {
   const createFooter = () => {
     const footer = document.createElement('footer');
     const wrapper = createWrapper(['wrapper'], footer, 'div');
-    createParagraph(['text--footer'], wrapper, 'Copyright © 2022 ');
+    createParagraph(['text--footer'], wrapper, 'Created by');
     const link = createLink(['gh-link'], wrapper, 'husky93');
     link.href = 'https://github.com/husky93';
     main.after(footer);
@@ -137,9 +137,25 @@ const ui = (() => {
       minute: 'numeric',
     });
     let priority;
-    if (Todo.priority === 1) { priority = 'high'; } else if (Todo.priority === 2) { priority = 'medium'; } else { priority = 'low'; }
-    const todoWrapper = createWrapper(['container', 'todo', `priority-${priority}`], parent, 'div');
-    createCheckmark(['form-check'], todoWrapper, Todo.title, Todo.isDone, Todo.id);
+    if (Todo.priority === 1) {
+      priority = 'high';
+    } else if (Todo.priority === 2) {
+      priority = 'medium';
+    } else {
+      priority = 'low';
+    }
+    const todoWrapper = createWrapper(
+      ['container', 'todo', `priority-${priority}`],
+      parent,
+      'div'
+    );
+    createCheckmark(
+      ['form-check'],
+      todoWrapper,
+      Todo.title,
+      Todo.isDone,
+      Todo.id
+    );
     const container = createWrapper(['todo-details'], todoWrapper, 'div');
     createParagraph(['todo-date'], container, date);
     createTodoUi(Todo.id, container);
@@ -154,7 +170,9 @@ const ui = (() => {
     const modalClose = document.querySelector('.modal-close');
 
     while (modal.childElementCount > 1) {
-      if (modal.lastElementChild !== modalClose) { modal.removeChild(modal.lastElementChild); }
+      if (modal.lastElementChild !== modalClose) {
+        modal.removeChild(modal.lastElementChild);
+      }
     }
   };
 
@@ -166,17 +184,31 @@ const ui = (() => {
 
   const createAddProjectButton = () => {
     const menu = document.querySelector('.menu');
-    const btn = createLink(['project-add', 'btn', 'btn--primary'], menu, 'Add project');
+    const btn = createLink(
+      ['project-add', 'btn', 'btn--primary'],
+      menu,
+      'Add project'
+    );
     createIcon(['icon--add', 'material-symbols-outlined'], btn, 'add');
   };
 
-  const createInput = ([...classList], parent, type, name, labelText, required, value) => {
+  const createInput = (
+    [...classList],
+    parent,
+    type,
+    name,
+    labelText,
+    required,
+    value
+  ) => {
     const wrapper = createWrapper(['input-group'], parent, 'div');
     const input = document.createElement('input');
     const label = document.createElement('label');
     classList.forEach((item) => input.classList.add(item));
 
-    if (value) { input.value = value; }
+    if (value) {
+      input.value = value;
+    }
     input.type = type;
     input.name = name;
     input.id = name;
@@ -188,8 +220,19 @@ const ui = (() => {
     return input;
   };
 
-  const createRadioInput = ([...classList], parent, name, id, labelText, required) => {
-    const wrapper = createWrapper(['input-group', 'radio-group'], parent, 'div');
+  const createRadioInput = (
+    [...classList],
+    parent,
+    name,
+    id,
+    labelText,
+    required
+  ) => {
+    const wrapper = createWrapper(
+      ['input-group', 'radio-group'],
+      parent,
+      'div'
+    );
     const input = document.createElement('input');
     const label = document.createElement('label');
     classList.forEach((item) => input.classList.add(item));
@@ -204,8 +247,18 @@ const ui = (() => {
     return input;
   };
 
-  const createTextarea = ([...classList], parent, name, labelText, required) => {
-    const wrapper = createWrapper(['input-group', 'textarea-group'], parent, 'div');
+  const createTextarea = (
+    [...classList],
+    parent,
+    name,
+    labelText,
+    required
+  ) => {
+    const wrapper = createWrapper(
+      ['input-group', 'textarea-group'],
+      parent,
+      'div'
+    );
     const input = document.createElement('textarea');
     const label = document.createElement('label');
     classList.forEach((item) => input.classList.add(item));
@@ -259,7 +312,13 @@ const ui = (() => {
       minute: 'numeric',
     });
     let priority;
-    if (Todo.priority === 1) { priority = 'High'; } else if (Todo.priority === 2) { priority = 'Medium'; } else { priority = 'Low'; }
+    if (Todo.priority === 1) {
+      priority = 'High';
+    } else if (Todo.priority === 2) {
+      priority = 'Medium';
+    } else {
+      priority = 'Low';
+    }
     const priorityText = `Priority: ${priority}`;
 
     clearModal(modal);
@@ -280,26 +339,78 @@ const ui = (() => {
     clearModal(modal);
     const form = createWrapper(['form--edit'], modal, 'form');
     form.method = 'post';
-    const title = createInput(['input', 'input--edit'], form, 'text', 'title', 'Title:', true);
-    const description = createTextarea(['textarea', 'input--edit'], form, 'description', 'Description:', false);
-    const dueDate = createInput(['input', 'input--edit'], form, 'datetime-local', 'dueDate', 'Due date:', true);
+    const title = createInput(
+      ['input', 'input--edit'],
+      form,
+      'text',
+      'title',
+      'Title:',
+      true
+    );
+    const description = createTextarea(
+      ['textarea', 'input--edit'],
+      form,
+      'description',
+      'Description:',
+      false
+    );
+    const dueDate = createInput(
+      ['input', 'input--edit'],
+      form,
+      'datetime-local',
+      'dueDate',
+      'Due date:',
+      true
+    );
     const fieldset = document.createElement('fieldset');
     const legend = document.createElement('legend');
     legend.textContent = 'Select priority';
     fieldset.appendChild(legend);
-    const radioLow = createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'low', 'Low', true);
-    const radioMedium = createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'medium', 'Medium', true);
-    const radioHigh = createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
+    const radioLow = createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'low',
+      'Low',
+      true
+    );
+    const radioMedium = createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'medium',
+      'Medium',
+      true
+    );
+    const radioHigh = createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'high',
+      'High',
+      true
+    );
 
     // Input current values when clicked on edit.
     // eslint-disable-next-line max-len
-    if (Todo.priority === 1) { radioHigh.checked = true; } else if (Todo.priority === 2) { radioMedium.checked = true; } else { radioLow.checked = true; }
+    if (Todo.priority === 1) {
+      radioHigh.checked = true;
+    } else if (Todo.priority === 2) {
+      radioMedium.checked = true;
+    } else {
+      radioLow.checked = true;
+    }
     title.value = Todo.title;
     description.value = Todo.description;
     dueDate.value = Todo.dueDate;
 
     form.appendChild(fieldset);
-    createButton(['btn', 'btn--primary', 'edit-submit'], form, 'Submit changes', 'submit');
+    createButton(
+      ['btn', 'btn--primary', 'edit-submit'],
+      form,
+      'Submit changes',
+      'submit'
+    );
   };
 
   const renderAddTodo = () => {
@@ -307,18 +418,64 @@ const ui = (() => {
     clearModal(modal);
     const form = createWrapper(['form--add'], modal, 'form');
     form.method = 'post';
-    createInput(['input', 'input--edit'], form, 'text', 'title', 'Title:', true);
-    createTextarea(['textarea', 'input--edit'], form, 'description', 'Description:', false);
-    createInput(['input', 'input--edit'], form, 'datetime-local', 'dueDate', 'Due date:', true);
+    createInput(
+      ['input', 'input--edit'],
+      form,
+      'text',
+      'title',
+      'Title:',
+      true
+    );
+    createTextarea(
+      ['textarea', 'input--edit'],
+      form,
+      'description',
+      'Description:',
+      false
+    );
+    createInput(
+      ['input', 'input--edit'],
+      form,
+      'datetime-local',
+      'dueDate',
+      'Due date:',
+      true
+    );
     const fieldset = document.createElement('fieldset');
     const legend = document.createElement('legend');
     legend.textContent = 'Select priority';
     fieldset.appendChild(legend);
-    createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'low', 'Low', true);
-    createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'medium', 'Medium', true);
-    createRadioInput(['input', 'input--edit', 'radio'], fieldset, 'priority', 'high', 'High', true);
+    createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'low',
+      'Low',
+      true
+    );
+    createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'medium',
+      'Medium',
+      true
+    );
+    createRadioInput(
+      ['input', 'input--edit', 'radio'],
+      fieldset,
+      'priority',
+      'high',
+      'High',
+      true
+    );
     form.appendChild(fieldset);
-    createButton(['btn', 'btn--primary', 'add-submit'], form, 'Add new Todo', 'submit');
+    createButton(
+      ['btn', 'btn--primary', 'add-submit'],
+      form,
+      'Add new Todo',
+      'submit'
+    );
   };
 
   const renderAddProject = () => {
@@ -326,8 +483,20 @@ const ui = (() => {
     clearModal(modal);
     const form = createWrapper(['form--project'], modal, 'form');
     form.method = 'post';
-    createInput(['input', 'input--edit'], form, 'text', 'title', 'Project Title:', true);
-    createButton(['btn', 'btn--primary', 'project-submit'], form, 'Add new project', 'submit');
+    createInput(
+      ['input', 'input--edit'],
+      form,
+      'text',
+      'title',
+      'Project Title:',
+      true
+    );
+    createButton(
+      ['btn', 'btn--primary', 'project-submit'],
+      form,
+      'Add new project',
+      'submit'
+    );
   };
 
   const createTemplate = () => {
