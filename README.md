@@ -2,6 +2,8 @@
 Web application for creating todo lists. Written in JavaScript with use of Factory functions and Module patterns to encapsulate exported modules.
 <br>
 
+### Live: [click here](https://husky93.github.io/todo-list/)
+
 ## Features:
 - Store data in local storage
 - Dynamically render content
@@ -14,7 +16,6 @@ Web application for creating todo lists. Written in JavaScript with use of Facto
 - Edit Todo
 - Show number of tasks next to the project
 
-#### Live: [click here](https://husky93.github.io/todo-list/)
 
 ### Dependencies used:
 - [date-fns](https://github.com/date-fns/date-fns)
